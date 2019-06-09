@@ -621,7 +621,12 @@ while True:
             x = pygame.mouse.get_pos()[0]
             if x < lvlNumberTxt[1] and level > 0 and pygame.time.get_ticks() - sinceLastLevelAdjustment >= 500:  # previous level
                 sinceLastLevelAdjustment = pygame.time.get_ticks()
-                level -= 1
+                if pressed[pygame.K_LSHIFT]:
+                    level -= 5
+                else:
+                    level -= 1
+                if level < 0:
+                    level = 0
                 loadLevel(level)
             elif nextLevelTxt[1] <= x < wallTxt[1] and pygame.time.get_ticks() - sinceLastLevelAdjustment >= 500:  # next level
                 sinceLastLevelAdjustment = pygame.time.get_ticks()
